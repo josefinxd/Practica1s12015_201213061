@@ -6,6 +6,8 @@
 
 package plantasvszombies;
 
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import javax.swing.JOptionPane;
 
 /**
@@ -198,6 +200,37 @@ public class CampoPlantas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         lista.imprimir();
+        try{
+        PrintStream ps=new PrintStream(new FileOutputStream("c:\\grafo1.txt"));
+        
+        
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        try {      
+            String dotPath = "c:\\Archivos de programa(x86)\\Graphviz 2.28\\bin\\dot.exe";
+
+            String fileInputPath = "c:\\grafo1.txt";
+            String fileOutputPath = "c:\\grafo1.jpg";
+
+            String tParam = "-Tjpg";
+            String tOParam = "-o";
+
+            String[] cmd = new String[5];
+            cmd[0] = dotPath;
+            cmd[1] = tParam;
+            cmd[2] = fileInputPath;
+            cmd[3] = tOParam;
+            cmd[4] = fileOutputPath;
+
+            Runtime rt = Runtime.getRuntime();
+
+            rt.exec( cmd );
+
+          } catch (Exception ex) {
+            ex.printStackTrace();
+          }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
