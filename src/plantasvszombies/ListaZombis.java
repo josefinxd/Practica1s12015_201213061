@@ -10,14 +10,6 @@ package plantasvszombies;
  *
  * @author Jose Angel
  */
-public class PlantasVsZombies {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Inicio inicio=new Inicio();
-        inicio.setVisible(true);
-    }
+public class ListaZombis {
     
 }

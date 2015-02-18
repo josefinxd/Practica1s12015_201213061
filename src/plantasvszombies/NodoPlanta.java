@@ -11,21 +11,32 @@ package plantasvszombies;
  * @author Jose Angel
  */
 public class NodoPlanta {
+    private String nombre;
     private String campo;
     private NodoPlanta siguiente;
     
-    public NodoPlanta(String campo){
+    public NodoPlanta(String nombre, String campo){
+        this.nombre=nombre;       
         this.campo=campo;
         this.siguiente=null;
     }
     
     public NodoPlanta(){
+        this.nombre="";
         this.campo="";
         this.siguiente=null;
     }
     
+    public String getNombre(){
+        return nombre;
+    }
+    
     public String getCampo(){
         return campo;        
+    }
+    
+    public void setNombre(String nombre){
+        this.nombre=nombre;
     }
     
     public void setCampo(String campo ){

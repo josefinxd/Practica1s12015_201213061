@@ -12,13 +12,13 @@ import javax.swing.JOptionPane;
  *
  * @author Jose Angel
  */
-public class CampoPlantas_201213061 extends javax.swing.JFrame {
-
-    /**
-     * Creates new form CampoPlantas_201213061
-     */
-    public CampoPlantas_201213061() {
+public class CampoPlantas extends javax.swing.JFrame {
+    
+    private ListaPlantas lista;
+    public CampoPlantas() {
         initComponents();
+        lista=new ListaPlantas();
+        nombre_campo.setVisible(false);
         campo_extra.setVisible(false);
         guardar_campo.setVisible(false);
         agregar.setEnabled(false);
@@ -42,6 +42,10 @@ public class CampoPlantas_201213061 extends javax.swing.JFrame {
         campo_extra = new javax.swing.JTextField();
         guardar = new javax.swing.JButton();
         guardar_campo = new javax.swing.JButton();
+        nombre_campo = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,14 +76,21 @@ public class CampoPlantas_201213061 extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Nombre Campo");
+
+        jLabel5.setText("Valor Campo");
+
+        jButton1.setText("Imprimir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
-                .addComponent(campo_extra, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -88,21 +99,37 @@ public class CampoPlantas_201213061 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
                         .addComponent(agregar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(guardar_campo)
-                    .addComponent(guardar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                            .addComponent(cantidad))))
-                .addGap(0, 59, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(49, 49, 49)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(guardar_campo)
+                                .addComponent(guardar)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3))
+                                    .addGap(74, 74, 74)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                                        .addComponent(cantidad)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton1))
+                            .addComponent(nombre_campo))
+                        .addGap(46, 46, 46)
+                        .addComponent(campo_extra, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,10 +148,18 @@ public class CampoPlantas_201213061 extends javax.swing.JFrame {
                 .addComponent(guardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(agregar)
-                .addGap(32, 32, 32)
-                .addComponent(campo_extra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campo_extra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre_campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addComponent(guardar_campo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardar_campo)
+                    .addComponent(jButton1))
                 .addGap(32, 32, 32))
         );
 
@@ -132,16 +167,19 @@ public class CampoPlantas_201213061 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-        campo_extra.setVisible(true);
-        guardar_campo.setVisible(true);
+        nombre_campo.setVisible(true);
+        campo_extra.setVisible(true);        
+        guardar_campo.setVisible(true);        
     }//GEN-LAST:event_agregarActionPerformed
 
     private void guardar_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_campoActionPerformed
-        if(campo_extra.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "El campo esta vacio"); 
+        if(nombre_campo.getText().equals("")||campo_extra.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Alguno de los campos esta vacio"); 
         }
         else{
+            lista.add(nombre_campo.getText(),campo_extra.getText());
             campo_extra.setText("");
+            nombre_campo.setText("");
         }
     }//GEN-LAST:event_guardar_campoActionPerformed
 
@@ -150,9 +188,17 @@ public class CampoPlantas_201213061 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Alguno de los campos esta vacio"); 
         }
         else{
+            lista.add("nombre",nombre.getText());
+            lista.add("cantidad",cantidad.getText());
             agregar.setEnabled(true);
+            nombre.setEnabled(false);
+            cantidad.setEnabled(false);
         }       
     }//GEN-LAST:event_guardarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        lista.imprimir();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,20 +217,20 @@ public class CampoPlantas_201213061 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CampoPlantas_201213061.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CampoPlantas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CampoPlantas_201213061.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CampoPlantas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CampoPlantas_201213061.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CampoPlantas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CampoPlantas_201213061.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CampoPlantas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CampoPlantas_201213061().setVisible(true);
+                new CampoPlantas().setVisible(true);
             }
         });
     }
@@ -195,9 +241,13 @@ public class CampoPlantas_201213061 extends javax.swing.JFrame {
     private javax.swing.JTextField cantidad;
     private javax.swing.JButton guardar;
     private javax.swing.JButton guardar_campo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTextField nombre_campo;
     // End of variables declaration//GEN-END:variables
 }
