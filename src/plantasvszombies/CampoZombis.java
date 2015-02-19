@@ -6,17 +6,28 @@
 
 package plantasvszombies;
 
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
+import java.awt.Desktop;
+import java.io.File;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jose Angel
  */
 public class CampoZombis extends javax.swing.JFrame {
 
+    private ListaZombis lista;
     /**
      * Creates new form CampoZombis_201213061
      */
     public CampoZombis() {
         initComponents();
+        lista=new ListaZombis();
+        nombre_campo.setVisible(false);
+        campo_extra.setVisible(false);
+        guardar_campo.setVisible(false);
+        agregar.setEnabled(false);
     }
 
     /**
@@ -31,19 +42,58 @@ public class CampoZombis extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        nombre = new javax.swing.JTextField();
+        cantidad = new javax.swing.JTextField();
+        agregar = new javax.swing.JButton();
+        nombre_campo = new javax.swing.JTextField();
+        campo_extra = new javax.swing.JTextField();
+        imprimir = new javax.swing.JButton();
+        guardar_campo = new javax.swing.JButton();
+        guardar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(404, 382));
+        setPreferredSize(new java.awt.Dimension(405, 330));
 
         jLabel1.setText("Zombis");
 
         jLabel2.setText("Nombre:");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Cantidad:");
 
-        jButton1.setText("Agregar Campos");
+        agregar.setText("Agregar Campos");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
+
+        imprimir.setText("imprimir");
+        imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imprimirActionPerformed(evt);
+            }
+        });
+
+        guardar_campo.setText("Guardar campo extra");
+        guardar_campo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardar_campoActionPerformed(evt);
+            }
+        });
+
+        guardar.setText("Guardar");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Nombre Campo");
+
+        jLabel5.setText("Valor Campo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,40 +102,137 @@ public class CampoZombis extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                            .addComponent(jTextField1)))
+                        .addGap(163, 163, 163)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jButton1)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel2)
+                        .addGap(63, 63, 63)
+                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(guardar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(57, 57, 57)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(agregar)
+                                    .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(imprimir)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nombre_campo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(campo_extra, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardar_campo))
+                .addGap(64, 64, 64))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addComponent(jLabel1)
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel2))
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel3))
+                    .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(guardar)
+                .addGap(5, 5, 5)
+                .addComponent(agregar)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addComponent(jButton1)
-                .addContainerGap(108, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombre_campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campo_extra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imprimir)
+                    .addComponent(guardar_campo))
+                .addGap(42, 42, 42))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        if(nombre.getText().equals("")||cantidad.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Alguno de los campos esta vacio"); 
+        }
+        else{
+            lista.add("nombre",nombre.getText());
+            lista.add("cantidad",cantidad.getText());
+            agregar.setEnabled(true);
+            nombre.setEnabled(false);
+            cantidad.setEnabled(false);
+            guardar.setEnabled(true);
+        }       
+    }//GEN-LAST:event_guardarActionPerformed
+
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        nombre_campo.setVisible(true);
+        campo_extra.setVisible(true);        
+        guardar_campo.setVisible(true);
+    }//GEN-LAST:event_agregarActionPerformed
+
+    private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
+        lista.imprimir();
+        
+        try {
+      
+            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+
+            String fileInputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.dot\"";
+            String fileOutputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.png\"";
+            File imagen = new File("C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.png");
+            String tParam = "-Tpng";
+            String tOParam = "-o";
+            String[] cmd = new String[5];
+            cmd[0] = dotPath;
+            cmd[1] = tParam;
+            cmd[2] = fileInputPath;
+            cmd[3] = tOParam;
+            cmd[4] = fileOutputPath;
+
+            Runtime rt = Runtime.getRuntime();
+
+            rt.exec( cmd );
+            Thread.sleep(2000);
+            Desktop.getDesktop().open(imagen);
+
+          } catch (Exception ex) {
+            ex.printStackTrace();
+          }
+    }//GEN-LAST:event_imprimirActionPerformed
+
+    private void guardar_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_campoActionPerformed
+        if(nombre_campo.getText().equals("")||campo_extra.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Alguno de los campos esta vacio"); 
+        }
+        else{
+            lista.add(nombre_campo.getText(),campo_extra.getText());
+            campo_extra.setText("");
+            nombre_campo.setText("");
+        }
+    }//GEN-LAST:event_guardar_campoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,11 +270,18 @@ public class CampoZombis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton agregar;
+    private javax.swing.JTextField campo_extra;
+    private javax.swing.JTextField cantidad;
+    private javax.swing.JButton guardar;
+    private javax.swing.JButton guardar_campo;
+    private javax.swing.JButton imprimir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField nombre;
+    private javax.swing.JTextField nombre_campo;
     // End of variables declaration//GEN-END:variables
 }
