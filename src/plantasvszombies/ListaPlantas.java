@@ -47,7 +47,7 @@ public class ListaPlantas {
     
     public void imprimir(){
         NodoPlanta aux = primerNodo;
-        cadena="digraph G{ \n rankidir = LR;\n node[shape = record]; \n rankidir = UD;\n {  rank = same; \n Plantas;\n ";
+        cadena="digraph G{ \n node[shape = record]; \n rankidir = UD;\n {\n rank = same; \n Plantas;\n ";
         enlace="Plantas -> nodo0\n ";
         NodoPlanta aux2;
         int cont =0;
@@ -61,6 +61,6 @@ public class ListaPlantas {
             aux = aux.getSiguiente(); 
             cont++;
         }
-        cadena=cadena+enlace+"};";
+        cadena=cadena+enlace+"};\n ";
     }    
 }

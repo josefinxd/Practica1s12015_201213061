@@ -64,7 +64,7 @@ public class ListaZombis {
                 aux = aux.getSiguiente();
                 cont++;
             }
-            cadenas=cadenas+enlaces+"}; Jugador -> Plantas; \n Plantas -> Zombis; \n } ";
+            cadenas=cadenas+enlaces+"};\n Jugador -> Plantas; \n Plantas -> Zombis; \n } ";
             ps.println(cadenas);        
         }
         catch(Exception ex){
