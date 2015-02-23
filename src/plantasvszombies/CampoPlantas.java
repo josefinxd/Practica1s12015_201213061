@@ -18,10 +18,10 @@ import javax.swing.JOptionPane;
  */
 public class CampoPlantas extends javax.swing.JFrame {
     
-    private ListaPlantas lista;
+    public JugadorPlantas lista;
     public CampoPlantas() {
         initComponents();
-        lista=new ListaPlantas();
+        lista=new JugadorPlantas();
         nombre_campo.setVisible(false);
         campo_extra.setVisible(false);
         guardar_campo.setVisible(false);

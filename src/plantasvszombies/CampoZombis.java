@@ -17,13 +17,13 @@ import javax.swing.JOptionPane;
  */
 public class CampoZombis extends javax.swing.JFrame {
 
-    private ListaZombis lista;
+    private JugadorZombis lista;
     /**
      * Creates new form CampoZombis_201213061
      */
     public CampoZombis() {
         initComponents();
-        lista=new ListaZombis();
+        lista=new JugadorZombis();
         nombre_campo.setVisible(false);
         campo_extra.setVisible(false);
         guardar_campo.setVisible(false);

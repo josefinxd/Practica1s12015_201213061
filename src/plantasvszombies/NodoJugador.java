@@ -10,18 +10,18 @@ package plantasvszombies;
  *
  * @author Jose Angel
  */
-public class NodoZombi {
+public class NodoJugador {
     private String nombre;
     private String campo;
-    private NodoZombi siguiente;
+    private NodoJugador siguiente;
     
-    public NodoZombi(String nombre, String campo){
+    public NodoJugador(String nombre, String campo){
         this.nombre=nombre;
         this.campo=campo;
         this.siguiente=null;
     }
     
-    public NodoZombi(){
+    public NodoJugador(){
         this.nombre="";
         this.campo="";
         this.siguiente=null;
@@ -43,11 +43,11 @@ public class NodoZombi {
         this.campo=campo;
     }
     
-    public NodoZombi getSiguiente(){
+    public NodoJugador getSiguiente(){
         return siguiente;
     }
     
-    public void setSiguiente(NodoZombi siguiente){
+    public void setSiguiente(NodoJugador siguiente){
         this.siguiente=siguiente;
     }
 }

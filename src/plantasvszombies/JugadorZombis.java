@@ -13,23 +13,23 @@ import java.io.PrintStream;
  *
  * @author Jose Angel
  */
-public class ListaZombis {
-    private NodoZombi primerNodo;
+public class JugadorZombis {
+    private NodoJugador primerNodo;
     public String cadenas="";
     public String enlaces="";
     
-    public ListaZombis(){
+    public JugadorZombis(){
         this.primerNodo = null;
     }
     
     public void add(String nombre, String campo){
-        NodoZombi nuevo = new NodoZombi(nombre, campo);
+        NodoJugador nuevo = new NodoJugador(nombre, campo);
         if(primerNodo == null){
             primerNodo = nuevo; 
             return;
         }
         
-        NodoZombi aux = primerNodo;
+        NodoJugador aux = primerNodo;
         while(aux != null){
             if(aux.getSiguiente()== null){
                 aux.setSiguiente(nuevo); 
@@ -40,19 +40,19 @@ public class ListaZombis {
     }
         
         public String popCola(){
-            NodoZombi aux = primerNodo;
+            NodoJugador aux = primerNodo;
             primerNodo = primerNodo.getSiguiente();
             return aux.getCampo();
         }
     
     public void imprimir(){
-        NodoZombi aux = primerNodo;
+        NodoJugador aux = primerNodo;
         
         try{
             PrintStream ps=new PrintStream(new FileOutputStream("C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.dot"));
-            cadenas=ListaPlantas.cadena+"{ \n rank = same; \n Zombis;\n ";
+            cadenas=JugadorPlantas.cadena+"{ \n rank = same; \n Zombis;\n ";
             enlaces="Zombis -> nodos0\n ";
-            NodoZombi aux2;
+            NodoJugador aux2;
             int cont=0;
             while(aux != null){
                 System.out.println("Nombre: "+aux.getNombre().trim()+" Dato: " + aux.getCampo().trim());

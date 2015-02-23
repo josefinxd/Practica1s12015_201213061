@@ -10,12 +10,12 @@ package plantasvszombies;
  *
  * @author Jose Angel
  */
-public class ListaPlantas {
-    private NodoJugadores primerNodo;
+public class Cola {
+    ListaPlantas listaPlantas;
+    NodoJugadores primerNodo;
     
-    
-    public ListaPlantas(){
-        this.primerNodo = null;
+    public Cola(){
+        this.primerNodo=null;
     }
     
     public void add(String img, String nombre, int atk, int def, String tipo){
@@ -33,6 +33,12 @@ public class ListaPlantas {
             }
             aux = aux.getSiguiente();
         }
+    }
+    
+    public NodoJugadores popCola(){
+        NodoJugadores aux = primerNodo;
+        primerNodo = primerNodo.getSiguiente();
+        return aux;
     }
     
     public void imprimir(){
