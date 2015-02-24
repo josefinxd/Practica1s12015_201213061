@@ -13,23 +13,34 @@ package plantasvszombies;
  */
 public class Juego extends javax.swing.JFrame {
     
-        int contPlantas=0;
-        int contZombis=0;
+        int contPlantas;
+        int contZombis;
+        Cola cola=new Cola();
     /**
      * Creates new form Juego
      */
     public Juego() {
         initComponents();
+        plantas.start();
     }
+    
     Thread plantas =new Thread(){
-        
+        int ran=0;
          public void run(){
-             
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }       
+            contPlantas=CatalogoPlantas.listap.size();
+            while(true){
+                ran=(int)(Math.random()*contPlantas);
+                String cadena =CatalogoPlantas.listap.getObjeto(ran);
+                String campos[]=cadena.split(",");
+                try {                    
+                    cola.add(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]), campos[4]);
+                    System.out.println("----------------------------------------------------------------------");
+                    cola.imprimir();
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }       
+            }            
         }    
     };
     /**

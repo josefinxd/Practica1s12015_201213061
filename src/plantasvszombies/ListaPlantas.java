@@ -11,7 +11,7 @@ package plantasvszombies;
  * @author Jose Angel
  */
 public class ListaPlantas {
-    private NodoJugadores primerNodo;
+    public NodoJugadores primerNodo;
     
     
     public ListaPlantas(){
@@ -33,6 +33,27 @@ public class ListaPlantas {
             }
             aux = aux.getSiguiente();
         }
+    }
+    
+    public int size(){
+        int tamaño=0;
+        NodoJugadores aux = primerNodo;
+        while(aux!=null){
+            aux=aux.getSiguiente();
+            tamaño++;
+        }
+        return tamaño;
+    }
+    
+    public String getObjeto(int j){
+        NodoJugadores aux = primerNodo;
+        String cadena=null;
+        for(int i=0;i<j;i++){
+                aux=aux.getSiguiente();
+        } 
+        cadena=aux.getImg()+","+aux.getNombre()+","
+               +aux.getAtk()+","+aux.getDef()+","+aux.getTipo();          
+        return cadena;
     }
     
     public void imprimir(){

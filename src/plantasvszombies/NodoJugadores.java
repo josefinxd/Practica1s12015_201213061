@@ -46,7 +46,7 @@ public class NodoJugadores {
     }
     
     public String getNombre() {
-        return img;
+        return nombre;
     }
 
     public void setNombre(String nombre) {

@@ -17,13 +17,11 @@ import javax.swing.JOptionPane;
  * @author Jose Angel
  */
 public class CatalogoPlantas extends javax.swing.JFrame {
-    
-    public ListaPlantas listap;
+    public static ListaPlantas listap=new ListaPlantas();
     int img=1;         
        
     public CatalogoPlantas() {        
         initComponents();
-        listap= new ListaPlantas();
         cambiarImagen(img);
     }
 
@@ -55,6 +53,7 @@ public class CatalogoPlantas extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +105,13 @@ public class CatalogoPlantas extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("comenzar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,6 +142,8 @@ public class CatalogoPlantas extends javax.swing.JFrame {
                         .addGap(39, 39, 39))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addGap(40, 40, 40)
                         .addComponent(jButton3)
                         .addGap(75, 75, 75)
                         .addComponent(agre_plantas)
@@ -188,7 +196,8 @@ public class CatalogoPlantas extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(agre_plantas)
-                            .addComponent(jButton3))))
+                            .addComponent(jButton3)
+                            .addComponent(jButton4))))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -229,7 +238,7 @@ public class CatalogoPlantas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Alguno de los campos esta vacio"); 
         }
         else{
-            listap.add(Integer.toString(img), nombre.getText(), Integer.parseInt(ataque.getText()), 
+           listap.add(Integer.toString(img), nombre.getText(), Integer.parseInt(ataque.getText()), 
                     Integer.parseInt(defensa.getText()), tipoat.getSelectedItem().toString());
         }       
     }//GEN-LAST:event_agre_plantasActionPerformed
@@ -237,6 +246,12 @@ public class CatalogoPlantas extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         listap.imprimir();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Juego juego= new Juego();
+        juego.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
     
      public void cambiarImagen(int img){
         ImageIcon imgIcon = new ImageIcon(getClass().getResource("../Imagenes/"+String.valueOf(img)+".png"));
@@ -285,6 +300,7 @@ public class CatalogoPlantas extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
