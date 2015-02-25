@@ -6,6 +6,9 @@
 
 package plantasvszombies;
 
+import java.awt.Desktop;
+import java.io.File;
+
 
 /**
  *
@@ -59,7 +62,10 @@ public class Juego extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,11 +112,26 @@ public class Juego extends javax.swing.JFrame {
 
         jLabel2.setText("Zombis:");
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenu1.setText("Reportes");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMenuItem1.setText("Jugadores");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Catalogos");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Cola");
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Pila");
+        jMenu1.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -152,6 +173,36 @@ public class Juego extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+        
+        try {
+      
+            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+
+            String fileInputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.dot\"";
+            String fileOutputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.png\"";
+            File imagen = new File("C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.png");
+            String tParam = "-Tpng";
+            String tOParam = "-o";
+            String[] cmd = new String[5];
+            cmd[0] = dotPath;
+            cmd[1] = tParam;
+            cmd[2] = fileInputPath;
+            cmd[3] = tOParam;
+            cmd[4] = fileOutputPath;
+
+            Runtime rt = Runtime.getRuntime();
+
+            rt.exec( cmd );
+            Thread.sleep(2000);
+            Desktop.getDesktop().open(imagen);
+
+          } catch (Exception ex) {
+            ex.printStackTrace();
+          }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -191,8 +242,11 @@ public class Juego extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel panel_cola;
     private javax.swing.JPanel panel_pila;
     private javax.swing.JPanel tablero;

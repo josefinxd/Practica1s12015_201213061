@@ -26,6 +26,7 @@ public class CampoPlantas extends javax.swing.JFrame {
         campo_extra.setVisible(false);
         guardar_campo.setVisible(false);
         agregar.setEnabled(false);
+        seguir.setEnabled(false);
     }
 
     /**
@@ -197,13 +198,15 @@ public class CampoPlantas extends javax.swing.JFrame {
             nombre.setEnabled(false);
             cantidad.setEnabled(false);
             guardar.setEnabled(true);
+            seguir.setEnabled(true);
         }       
     }//GEN-LAST:event_guardarActionPerformed
 
     private void seguirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguirActionPerformed
         lista.imprimir();
-        CampoZombis campzom = new CampoZombis();
-        campzom.setVisible(true);
+        Inicio.cp=1;
+        Inicio ini =new Inicio();
+        ini.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_seguirActionPerformed
 

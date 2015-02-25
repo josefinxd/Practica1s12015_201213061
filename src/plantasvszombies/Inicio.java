@@ -11,12 +11,25 @@ package plantasvszombies;
  * @author Jose Angel
  */
 public class Inicio extends javax.swing.JFrame {
-
+    public  static int cp;
+    public  static int cz;
     /**
      * Creates new form Inicio_201213061
      */
     public Inicio() {
         initComponents();
+        jButton3.setEnabled(false);
+        if(cp==1){
+            jButton1.setEnabled(false);
+        }
+        if(cz==1){
+            jButton2.setEnabled(false);
+        }
+        if(cp==1&&cz==1){
+            jButton3.setEnabled(true);
+        }
+        cp=0;
+        cz=0;
     }
 
     /**
@@ -47,8 +60,18 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jButton2.setText("Jugador Zombis");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Comenzar Juego");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Eliminar Datos");
 
@@ -98,6 +121,18 @@ public class Inicio extends javax.swing.JFrame {
        campop.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        CampoZombis campoz=new CampoZombis();
+        campoz.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        CatalogoPlantas catp=new CatalogoPlantas();
+        catp.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

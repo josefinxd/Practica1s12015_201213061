@@ -16,11 +16,11 @@ import javax.swing.JOptionPane;
  *
  * @author Jose Angel
  */
-public class CatalogoPlantas extends javax.swing.JFrame {
-    public static ListaPlantas listap=new ListaPlantas();
+public class CatalogoZombis extends javax.swing.JFrame {
+    public static ListaZombis listaz=new ListaZombis();
     int img=6;         
        
-    public CatalogoPlantas() {        
+    public CatalogoZombis() {        
         initComponents();
         cambiarImagen(img);
     }
@@ -214,8 +214,8 @@ public class CatalogoPlantas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if(this.img==5){
-           this.img=5;
+       if(this.img==10){
+           this.img=10;
        }
        else{
            this.img++;
@@ -224,8 +224,8 @@ public class CatalogoPlantas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(this.img==1){
-            img=1;
+        if(this.img==6){
+            img=6;
         }
         else{
             img--;
@@ -238,18 +238,18 @@ public class CatalogoPlantas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Alguno de los campos esta vacio"); 
         }
         else{
-           listap.add(Integer.toString(img), nombre.getText(), Integer.parseInt(ataque.getText()), 
+           listaz.add(Integer.toString(img), nombre.getText(), Integer.parseInt(ataque.getText()), 
                     Integer.parseInt(defensa.getText()), tipoat.getSelectedItem().toString());
         }       
     }//GEN-LAST:event_agre_plantasActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        listap.imprimir();
+        listaz.imprimir();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        CatalogoZombis catz= new CatalogoZombis();
-        catz.setVisible(true);
+        Juego juego= new Juego();
+        juego.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
     
@@ -275,20 +275,20 @@ public class CatalogoPlantas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CatalogoPlantas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CatalogoZombis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CatalogoPlantas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CatalogoZombis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CatalogoPlantas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CatalogoZombis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CatalogoPlantas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CatalogoZombis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CatalogoPlantas().setVisible(true);
+                new CatalogoZombis().setVisible(true);
             }
         });
     }

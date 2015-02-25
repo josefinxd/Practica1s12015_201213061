@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class CampoZombis extends javax.swing.JFrame {
 
-    private JugadorZombis lista;
+    public static JugadorZombis lista;
     /**
      * Creates new form CampoZombis_201213061
      */
@@ -28,6 +28,7 @@ public class CampoZombis extends javax.swing.JFrame {
         campo_extra.setVisible(false);
         guardar_campo.setVisible(false);
         agregar.setEnabled(false);
+        seguir.setEnabled(false);
     }
 
     /**
@@ -47,12 +48,11 @@ public class CampoZombis extends javax.swing.JFrame {
         agregar = new javax.swing.JButton();
         nombre_campo = new javax.swing.JTextField();
         campo_extra = new javax.swing.JTextField();
-        imprimir = new javax.swing.JButton();
         guardar_campo = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        seguir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(404, 382));
@@ -68,13 +68,6 @@ public class CampoZombis extends javax.swing.JFrame {
         agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregarActionPerformed(evt);
-            }
-        });
-
-        imprimir.setText("imprimir");
-        imprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imprimirActionPerformed(evt);
             }
         });
 
@@ -96,10 +89,10 @@ public class CampoZombis extends javax.swing.JFrame {
 
         jLabel5.setText("Valor Campo");
 
-        jButton1.setText("Seguir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        seguir.setText("Seguir");
+        seguir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                seguirActionPerformed(evt);
             }
         });
 
@@ -129,18 +122,17 @@ public class CampoZombis extends javax.swing.JFrame {
                                     .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombre_campo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(imprimir)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(seguir)
+                        .addGap(51, 51, 51)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(campo_extra, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,9 +170,8 @@ public class CampoZombis extends javax.swing.JFrame {
                     .addComponent(campo_extra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imprimir)
                     .addComponent(guardar_campo)
-                    .addComponent(jButton1))
+                    .addComponent(seguir))
                 .addGap(42, 42, 42))
         );
 
@@ -198,6 +189,8 @@ public class CampoZombis extends javax.swing.JFrame {
             nombre.setEnabled(false);
             cantidad.setEnabled(false);
             guardar.setEnabled(true);
+            seguir.setEnabled(true);
+            
         }       
     }//GEN-LAST:event_guardarActionPerformed
 
@@ -206,36 +199,6 @@ public class CampoZombis extends javax.swing.JFrame {
         campo_extra.setVisible(true);        
         guardar_campo.setVisible(true);
     }//GEN-LAST:event_agregarActionPerformed
-
-    private void imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirActionPerformed
-        lista.imprimir();
-        
-        try {
-      
-            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
-
-            String fileInputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.dot\"";
-            String fileOutputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.png\"";
-            File imagen = new File("C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.png");
-            String tParam = "-Tpng";
-            String tOParam = "-o";
-            String[] cmd = new String[5];
-            cmd[0] = dotPath;
-            cmd[1] = tParam;
-            cmd[2] = fileInputPath;
-            cmd[3] = tOParam;
-            cmd[4] = fileOutputPath;
-
-            Runtime rt = Runtime.getRuntime();
-
-            rt.exec( cmd );
-            Thread.sleep(2000);
-            Desktop.getDesktop().open(imagen);
-
-          } catch (Exception ex) {
-            ex.printStackTrace();
-          }
-    }//GEN-LAST:event_imprimirActionPerformed
 
     private void guardar_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_campoActionPerformed
         if(nombre_campo.getText().equals("")||campo_extra.getText().equals("")){
@@ -248,10 +211,14 @@ public class CampoZombis extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_guardar_campoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CatalogoPlantas cat=new CatalogoPlantas();
-        cat.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void seguirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguirActionPerformed
+        lista.imprimir();
+        Inicio.cz=1;
+        Inicio.cp=1;
+        Inicio ini =new Inicio();
+        ini.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_seguirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,8 +261,6 @@ public class CampoZombis extends javax.swing.JFrame {
     private javax.swing.JTextField cantidad;
     private javax.swing.JButton guardar;
     private javax.swing.JButton guardar_campo;
-    private javax.swing.JButton imprimir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -303,5 +268,6 @@ public class CampoZombis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField nombre_campo;
+    private javax.swing.JButton seguir;
     // End of variables declaration//GEN-END:variables
 }
