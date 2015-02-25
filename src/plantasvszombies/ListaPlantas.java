@@ -12,6 +12,8 @@ package plantasvszombies;
  */
 public class ListaPlantas {
     public NodoJugadores primerNodo;
+    public static String cadena="";
+    public static String enlace=""; 
     
     
     public ListaPlantas(){
@@ -58,10 +60,22 @@ public class ListaPlantas {
     
     public void imprimir(){
         NodoJugadores aux = primerNodo;
+        cadena="digraph G{ \n node[shape = record]; \n rankidir = UD;\n {\n rank = same; \n Plantas;\n ";
+        enlace="Plantas -> nodo0\n ";
+        NodoJugadores aux2;
+        int cont =0;
         while(aux != null){
             System.out.println("Dato: " + aux.getImg()+", "+aux.getNombre()+", "
                     +aux.getAtk()+", "+aux.getDef()+", "+aux.getTipo());
-            aux = aux.getSiguiente();
+            cadena=cadena+("nodo"+cont+"[label=\""+ aux.getImg()+".png, "+aux.getNombre()+"\\l"
+                    +aux.getAtk()+", "+aux.getDef()+", "+aux.getTipo()+"\"];\n");
+            aux2=aux.getSiguiente();
+            if(aux2!= null){
+                enlace=enlace+("nodo"+cont+" -> ")+("nodo"+(cont+1)+";\n");
+            }            
+            aux = aux.getSiguiente(); 
+            cont++;
         }
+        cadena=cadena+enlace+"};\n ";
     }
 }

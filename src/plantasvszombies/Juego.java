@@ -123,6 +123,11 @@ public class Juego extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Catalogos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Cola");
@@ -174,15 +179,14 @@ public class Juego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
-        
+       
         try {
       
             String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
 
-            String fileInputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.dot\"";
-            String fileOutputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.png\"";
-            File imagen = new File("C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.png");
+            String fileInputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\jugadores.dot\"";
+            String fileOutputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\jugadores.png\"";
+            File imagen = new File("C:\\Program Files (x86)\\Graphviz2.38\\bin\\jugadores.png");
             String tParam = "-Tpng";
             String tOParam = "-o";
             String[] cmd = new String[5];
@@ -202,6 +206,34 @@ public class Juego extends javax.swing.JFrame {
             ex.printStackTrace();
           }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try {
+      
+            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+
+            String fileInputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\catalogos.dot\"";
+            String fileOutputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\catalogos.png\"";
+            File imagen = new File("C:\\Program Files (x86)\\Graphviz2.38\\bin\\catalogos.png");
+            String tParam = "-Tpng";
+            String tOParam = "-o";
+            String[] cmd = new String[5];
+            cmd[0] = dotPath;
+            cmd[1] = tParam;
+            cmd[2] = fileInputPath;
+            cmd[3] = tOParam;
+            cmd[4] = fileOutputPath;
+
+            Runtime rt = Runtime.getRuntime();
+
+            rt.exec( cmd );
+            Thread.sleep(2000);
+            Desktop.getDesktop().open(imagen);
+
+          } catch (Exception ex) {
+            ex.printStackTrace();
+          }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

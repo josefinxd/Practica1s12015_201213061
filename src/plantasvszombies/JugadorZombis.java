@@ -49,14 +49,14 @@ public class JugadorZombis {
         NodoJugador aux = primerNodo;
         
         try{
-            PrintStream ps=new PrintStream(new FileOutputStream("C:\\Program Files (x86)\\Graphviz2.38\\bin\\grafo1.dot"));
+            PrintStream ps=new PrintStream(new FileOutputStream("C:\\Program Files (x86)\\Graphviz2.38\\bin\\jugadores.dot"));
             cadenas=JugadorPlantas.cadena+"{ \n rank = same; \n Zombis;\n ";
             enlaces="Zombis -> nodos0\n ";
             NodoJugador aux2;
             int cont=0;
             while(aux != null){
                 System.out.println("Nombre: "+aux.getNombre().trim()+" Dato: " + aux.getCampo().trim());
-                cadenas=cadenas+"nodos"+cont+("[label=\""+aux.getNombre().trim()+" "+aux.getCampo().trim()+"\"];\n");
+                cadenas=cadenas+"nodos"+cont+("[label=\""+aux.getNombre().trim()+"\\l"+aux.getCampo().trim()+"\"];\n");
                 aux2=aux.getSiguiente();
                 if(aux2!= null){
                     enlaces=enlaces+("nodos"+cont+" -> nodos"+(cont+1)+";\n");

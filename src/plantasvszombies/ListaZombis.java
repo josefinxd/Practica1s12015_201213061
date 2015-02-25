@@ -6,12 +6,17 @@
 
 package plantasvszombies;
 
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 /**
  *
  * @author Jose Angel
  */
 public class ListaZombis {
     public NodoJugadores primerNodo;
+    public static String cadenas="";
+    public static String enlaces="";
     
     
     public ListaZombis(){
@@ -57,11 +62,31 @@ public class ListaZombis {
     }
     
     public void imprimir(){
-        NodoJugadores aux = primerNodo;
-        while(aux != null){
-            System.out.println("Dato: " + aux.getImg()+", "+aux.getNombre()+", "
+         NodoJugadores aux = primerNodo;
+        
+        try{
+            PrintStream ps=new PrintStream(new FileOutputStream("C:\\Program Files (x86)\\Graphviz2.38\\bin\\catalogos.dot"));
+            cadenas=ListaPlantas.cadena+"{ \n rank = same; \n Zombis;\n ";
+            enlaces="Zombis -> nodos0\n ";
+            NodoJugadores aux2;
+            int cont=0;
+            while(aux != null){
+                System.out.println("Dato: " + aux.getImg()+", "+aux.getNombre()+", "
                     +aux.getAtk()+", "+aux.getDef()+", "+aux.getTipo());
-            aux = aux.getSiguiente();
+                cadenas=cadenas+"nodos"+cont+("[label=\""+ aux.getImg()+", "+aux.getNombre()+"\\l"
+                    +aux.getAtk()+", "+aux.getDef()+", "+aux.getTipo()+"\"];\n");
+                aux2=aux.getSiguiente();
+                if(aux2!= null){
+                    enlaces=enlaces+("nodos"+cont+" -> nodos"+(cont+1)+";\n");
+                }            
+                aux = aux.getSiguiente();
+                cont++;
+            }
+            cadenas=cadenas+enlaces+"}; \n } ";
+            ps.println(cadenas);        
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
         }
     }
 }

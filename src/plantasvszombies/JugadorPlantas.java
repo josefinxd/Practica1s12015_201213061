@@ -53,7 +53,7 @@ public class JugadorPlantas {
         int cont =0;
         while(aux != null){
             System.out.println("Nombre: "+aux.getNombre().trim()+" Dato: " + aux.getCampo().trim());
-            cadena=cadena+("nodo"+cont+"[label=\""+aux.getNombre().trim()+" "+aux.getCampo().trim()+"\"];\n");
+            cadena=cadena+("nodo"+cont+"[label=\""+aux.getNombre().trim()+"\\l"+aux.getCampo().trim()+"\"];\n");
             aux2=aux.getSiguiente();
             if(aux2!= null){
                 enlace=enlace+("nodo"+cont+" -> ")+("nodo"+(cont+1)+";\n");
