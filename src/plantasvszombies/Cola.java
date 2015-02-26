@@ -91,8 +91,8 @@ public class Cola {
         
         try{
             PrintStream ps=new PrintStream(new FileOutputStream("C:\\Program Files (x86)\\Graphviz2.38\\bin\\cola.dot"));
-            cadena="digraph G{ \n node[shape = record]; \n rankidir = LR;\n {\n  Plantas;\n ";
-            enlace="Plantas -> nodos0; [dir=back]\n ";
+            cadena="digraph G{ \n node[shape = record]; \n rankidir = LR;\n {\n  \n ";
+            enlace="";
             NodoJugadores aux2;
             int cont=0;
             while(aux != null){

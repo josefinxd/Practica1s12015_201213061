@@ -9,6 +9,8 @@ package plantasvszombies;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -77,16 +79,54 @@ public class Matriz {
     }
     
     public void imprimir(){
-        Nodo aux =primerNodo;
-        for(int i=0;aux!=null;i++){
-            Nodo aux2=aux;
-            for(int j=0;aux2!=null;j++){
-                System.out.print((i+1)+","+(j+1));
-                aux2=aux2.getSiguiente();
-            }
-            System.out.println();
-            aux=aux.getAbajo();
-        }        
+        String cadena="";
+        String enlace="";
+        
+        
+        try{
+            PrintStream ps=new PrintStream(new FileOutputStream("C:\\Program Files (x86)\\Graphviz2.38\\bin\\cola.dot"));
+            cadena="digraph G{ \n node[shape = record]; \n rankidir = LR;\n {\n  \n ";
+            enlace="";
+            Nodo aux2;
+            int cont=0;
+            Nodo aux= primerNodo;            
+                for(int i=0;i<columnas-1;i++){
+                    aux.setSiguiente(new Nodo("1"));
+                    aux.getSiguiente().setAnterior(aux);
+                    cadena=cadena+"nodos"+cont+("[label=\""+aux.getDato()+"];\n");
+                    aux=aux.getSiguiente();            
+                }
+                aux=primerNodo;
+                for(int j=0;j<filas-1;j++){
+                    aux.setAbajo(new Nodo("2"));
+                    aux.getAbajo().setArriba(aux);
+                    aux=aux.getAbajo();
+                }
+                aux=primerNodo;
+                for(int i=0;i<filas-1;i++){
+                    aux2=aux;
+                    for(int j=0;j<columnas-1;j++){
+                        aux2.getAbajo().setSiguiente(new Nodo("3"));
+                        aux2.getAbajo().getSiguiente().setAnterior(aux2.getAbajo());
+                        aux2.getSiguiente().setAbajo(aux2.getAbajo().getSiguiente());
+                        aux2.getSiguiente().getAbajo().setArriba(aux2.getSiguiente());
+
+                        aux2=aux2.getSiguiente();
+                    }
+                    aux=aux.getAbajo();
+                }               
+                           
+                aux = aux.getSiguiente();
+                cont++;
+                   
+            
+            cadena=cadena+enlace+"}\n } ";
+            ps.println(cadena);        
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+             
     }    
 }
  

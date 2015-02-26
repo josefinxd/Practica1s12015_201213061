@@ -23,6 +23,7 @@ public class Juego extends javax.swing.JFrame {
         int contPlantas;
         int contZombis;
         Cola cola=new Cola();
+        Pila pila=new Pila();
         int cont=1;
     /**
      * Creates new form Juego
@@ -31,6 +32,7 @@ public class Juego extends javax.swing.JFrame {
         initComponents();
         matriz.setFilasColumnas(tablero);        
         plantas.start();
+        zombis.start();
         panel_cola.setLayout(new GridLayout(10,1)); 
     }
     
@@ -52,6 +54,27 @@ public class Juego extends javax.swing.JFrame {
                     ex.printStackTrace();
                 } 
                 cont++;
+            }            
+        }    
+    };
+    
+    Thread zombis =new Thread(){
+        int rand=0;
+         public void run(){
+            contZombis=CatalogoZombis.listaz.size();
+            System.out.println("----------------------------------------------------------------------");  
+            while(true){
+                               
+                rand=(int)(Math.random()*contZombis);
+                String cadena =CatalogoZombis.listaz.getObjeto(rand);
+                String campos[]=cadena.split(",");
+                try {                  
+                    pila.add(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]), campos[4]);
+                    System.out.println(cadena);
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                } 
             }            
         }    
     };
@@ -157,6 +180,11 @@ public class Juego extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Pila");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
@@ -285,6 +313,35 @@ public class Juego extends javax.swing.JFrame {
             ex.printStackTrace();
           }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        pila.imprimir();
+        try {
+      
+            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+
+            String fileInputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\pila.dot\"";
+            String fileOutputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\pila.png\"";
+            File imagen = new File("C:\\Program Files (x86)\\Graphviz2.38\\bin\\pila.png");
+            String tParam = "-Tpng";
+            String tOParam = "-o";
+            String[] cmd = new String[5];
+            cmd[0] = dotPath;
+            cmd[1] = tParam;
+            cmd[2] = fileInputPath;
+            cmd[3] = tOParam;
+            cmd[4] = fileOutputPath;
+
+            Runtime rt = Runtime.getRuntime();
+
+            rt.exec( cmd );
+            Thread.sleep(2000);
+            Desktop.getDesktop().open(imagen);
+
+          } catch (Exception ex) {
+            ex.printStackTrace();
+          }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
