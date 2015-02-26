@@ -6,15 +6,18 @@
 
 package plantasvszombies;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author Jose Angel
  */
-public class NodoJugadores {
+public class NodoJugadores extends JButton{
     private String img;
     private String nombre;
     private int atk;
     private int def;
+    public int fila;
     private String tipo;    
     private NodoJugadores siguiente;
     private NodoJugadores anterior;

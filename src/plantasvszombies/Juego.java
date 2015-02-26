@@ -7,7 +7,11 @@
 package plantasvszombies;
 
 import java.awt.Desktop;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -15,34 +19,39 @@ import java.io.File;
  * @author Jose Angel
  */
 public class Juego extends javax.swing.JFrame {
-    
+    Matriz matriz=new Matriz(TamañoCampo.fila,TamañoCampo.columna);
         int contPlantas;
         int contZombis;
         Cola cola=new Cola();
+        int cont=1;
     /**
      * Creates new form Juego
      */
     public Juego() {
         initComponents();
+        matriz.setFilasColumnas(tablero);        
         plantas.start();
+        panel_cola.setLayout(new GridLayout(10,1)); 
     }
     
     Thread plantas =new Thread(){
         int ran=0;
          public void run(){
             contPlantas=CatalogoPlantas.listap.size();
+            System.out.println("----------------------------------------------------------------------");  
             while(true){
+                               
                 ran=(int)(Math.random()*contPlantas);
                 String cadena =CatalogoPlantas.listap.getObjeto(ran);
                 String campos[]=cadena.split(",");
-                try {                    
-                    cola.add(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]), campos[4]);
-                    System.out.println("----------------------------------------------------------------------");
-                    cola.imprimir();
+                try {                  
+                    cola.add(campos[0], campos[1], Integer.parseInt(campos[2]), Integer.parseInt(campos[3]), campos[4],panel_cola);
+                    System.out.println(cadena);
                     Thread.sleep(5000);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
-                }       
+                } 
+                cont++;
             }            
         }    
     };
@@ -56,6 +65,7 @@ public class Juego extends javax.swing.JFrame {
     private void initComponents() {
 
         panel_cola = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         tablero = new javax.swing.JPanel();
         panel_pila = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -71,15 +81,23 @@ public class Juego extends javax.swing.JFrame {
 
         panel_cola.setBackground(new java.awt.Color(255, 255, 255));
 
+        jButton1.setText("jButton1");
+
         javax.swing.GroupLayout panel_colaLayout = new javax.swing.GroupLayout(panel_cola);
         panel_cola.setLayout(panel_colaLayout);
         panel_colaLayout.setHorizontalGroup(
             panel_colaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 99, Short.MAX_VALUE)
+            .addGroup(panel_colaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         panel_colaLayout.setVerticalGroup(
             panel_colaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGroup(panel_colaLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jButton1)
+                .addContainerGap(298, Short.MAX_VALUE))
         );
 
         tablero.setBackground(new java.awt.Color(0, 204, 51));
@@ -131,6 +149,11 @@ public class Juego extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Cola");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Pila");
@@ -179,7 +202,6 @@ public class Juego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       
         try {
       
             String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
@@ -235,6 +257,35 @@ public class Juego extends javax.swing.JFrame {
           }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        cola.imprimir();
+        try {
+      
+            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+
+            String fileInputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\cola.dot\"";
+            String fileOutputPath = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\cola.png\"";
+            File imagen = new File("C:\\Program Files (x86)\\Graphviz2.38\\bin\\cola.png");
+            String tParam = "-Tpng";
+            String tOParam = "-o";
+            String[] cmd = new String[5];
+            cmd[0] = dotPath;
+            cmd[1] = tParam;
+            cmd[2] = fileInputPath;
+            cmd[3] = tOParam;
+            cmd[4] = fileOutputPath;
+
+            Runtime rt = Runtime.getRuntime();
+
+            rt.exec( cmd );
+            Thread.sleep(2000);
+            Desktop.getDesktop().open(imagen);
+
+          } catch (Exception ex) {
+            ex.printStackTrace();
+          }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -271,6 +322,7 @@ public class Juego extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;

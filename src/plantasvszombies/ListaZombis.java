@@ -71,7 +71,7 @@ public class ListaZombis {
             NodoJugadores aux2;
             int cont=0;
             while(aux != null){
-                System.out.println("Dato: " + aux.getImg()+", "+aux.getNombre()+", "
+                System.out.println("Dato: " + aux.getImg()+".png, "+aux.getNombre()+", "
                     +aux.getAtk()+", "+aux.getDef()+", "+aux.getTipo());
                 cadenas=cadenas+"nodos"+cont+("[label=\""+ aux.getImg()+", "+aux.getNombre()+"\\l"
                     +aux.getAtk()+", "+aux.getDef()+", "+aux.getTipo()+"\"];\n");
@@ -82,7 +82,7 @@ public class ListaZombis {
                 aux = aux.getSiguiente();
                 cont++;
             }
-            cadenas=cadenas+enlaces+"}; \n } ";
+            cadenas=cadenas+enlaces+"}; \n Plantas -> Zombis [dir=none color=\"white\"] \n } ";
             ps.println(cadenas);        
         }
         catch(Exception ex){

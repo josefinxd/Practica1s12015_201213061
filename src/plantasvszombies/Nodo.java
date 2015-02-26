@@ -5,26 +5,36 @@
  */
 package plantasvszombies;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author icon
  */
-public class Nodo {
+public class Nodo extends JButton{
 
     private String dato;
+    public int fila;
+    public int columna;
     private Nodo siguiente;
     private Nodo anterior;
+    private Nodo abajo;
+    private Nodo arriba;
     
     public Nodo(String dato){
         this.dato = dato;
         this.siguiente = null;
         this.anterior = null;
+        this.abajo=null;
+        this.arriba=null;
     }
     
     public Nodo(){
         this.dato = null;
         this.siguiente = null;
         this.anterior = null;
+        this.abajo=null;
+        this.arriba=null;        
     }
     
     public String getDato() {
@@ -51,6 +61,21 @@ public class Nodo {
         this.anterior = anterior;
     }
     
+    public Nodo getAbajo(){
+        return abajo;
+    }
+    
+    public void setAbajo(Nodo abajo){
+        this.abajo=abajo;
+    }
+    
+    public Nodo getArriba(){
+        return arriba;
+    }
+    
+    public void setArriba(Nodo arriba){
+        this.arriba=arriba;
+    }
 }
 
 
